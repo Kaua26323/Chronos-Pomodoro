@@ -3,6 +3,7 @@ import styles from './pomodoroForm.module.css';
 import { Cycles } from '../Cycles';
 import { PlayCircleIcon } from 'lucide-react';
 import { DefaultInput } from '../DefaultInput';
+import { DefaultButton } from '../DefaultButton';
 
 export function PomodoroForm() {
   return (
@@ -24,9 +25,10 @@ export function PomodoroForm() {
         <Cycles />
       </div>
       <div className={styles.formRow}>
-        <button>
-          <PlayCircleIcon />
-        </button>
+        <DefaultButton
+          icon={PlayCircleIcon}
+          arialLabel='Play pomodoro button'
+        />
       </div>
     </form>
   );
