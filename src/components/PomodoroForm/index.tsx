@@ -2,13 +2,18 @@ import styles from './pomodoroForm.module.css';
 
 import { Cycles } from '../Cycles';
 import { PlayCircleIcon } from 'lucide-react';
+import { DefaultInput } from '../DefaultInput';
 
 export function PomodoroForm() {
   return (
     <form action='' className={styles.formContainer}>
       <div className={styles.formRow}>
-        <label htmlFor='task'>Task</label>
-        <input type='text' id='task' placeholder='Enter the Task' />
+        <DefaultInput
+          id='task'
+          labelText='Task'
+          type='text'
+          placeholder='Enter the Task'
+        />
       </div>
       <div className={styles.formRow}>
         <p>
