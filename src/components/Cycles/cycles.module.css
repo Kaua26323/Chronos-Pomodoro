@@ -1,0 +1,29 @@
+.cyclesLabel {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.cyclesDots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cyclesDot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
+.workTime {
+  background-color: var(--workTime);
+}
+.shortBreakTime {
+  background-color: var(--shortBreak);
+}
+.longBreakTime {
+  background-color: var(--longBreak);
+}
