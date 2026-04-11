@@ -1,0 +1,22 @@
+.footer {
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+.footer p {
+  font-weight: bold;
+}
+
+.footerLink {
+  color: #0546d3;
+  font-weight: bold;
+  transition: all 0.5s ease;
+}
+
+.footerLink:hover {
+  color: var(--info);
+  text-decoration: underline;
+}
