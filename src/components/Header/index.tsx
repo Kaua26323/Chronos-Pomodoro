@@ -19,10 +19,30 @@ export function Header() {
           <span>Chronos</span>
         </a>
         <nav className={styles.headerNav}>
-          <NavLinks href='/home' icon={HouseIcon} />
-          <NavLinks href='/history' icon={HistoryIcon} />
-          <NavLinks href='/settings' icon={SettingsIcon} />
-          <NavLinks href='/changetheme' icon={SunIcon} />
+          <NavLinks
+            href='/home'
+            icon={HouseIcon}
+            title='Go to Home page'
+            arialLabel='Go to Home page'
+          />
+          <NavLinks
+            href='/history'
+            icon={HistoryIcon}
+            title='View History'
+            arialLabel='View History'
+          />
+          <NavLinks
+            href='/settings'
+            icon={SettingsIcon}
+            title='Settings'
+            arialLabel='Settings'
+          />
+          <NavLinks
+            href='/changetheme'
+            icon={SunIcon}
+            title='Change theme'
+            arialLabel='Change theme'
+          />
         </nav>
       </div>
     </header>
