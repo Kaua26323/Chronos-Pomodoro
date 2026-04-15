@@ -9,9 +9,10 @@ import { useTaskContext } from '@/contexts/TaskContext/useTaskContext';
 import type { TaskModel } from '@/models/TaskModel';
 import { getNextCycleType } from '@/utils/getNextCycleType';
 import { formatSecondsToMin } from '@/utils/formatSecondsToMin';
+import { TaskActionTypes } from '@/contexts/TaskContext/taskActions';
 
 export function PomodoroForm() {
-  const { state, setState } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
   const taskNameInput = useRef<HTMLInputElement>(null);
 
   const nextCycle = getNextCycle(state.currentCycle);
@@ -34,31 +35,13 @@ export function PomodoroForm() {
       type: nextCycleType,
     };
 
-    const secondsRemaining = newTask.duration * 60;
-
-    setState(prevState => {
-      return {
-        ...prevState,
-        activeTask: newTask,
-        currentCycle: nextCycle,
-        secondsRemaining,
-        formattedSecondsRemaining: formatSecondsToMin(secondsRemaining),
-        tasks: [...prevState.tasks, newTask],
-      };
-    });
+    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   }
 
   console.log(state);
 
   function handleInterruptTask() {
-    setState(prevState => {
-      return {
-        ...prevState,
-        activeTask: null,
-        secondsRemaining: 0,
-        formattedSecondsRemaining: '00:00',
-      };
-    });
+    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
   }
 
   return (
