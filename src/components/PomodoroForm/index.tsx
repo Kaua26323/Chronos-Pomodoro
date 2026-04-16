@@ -1,15 +1,19 @@
 import { useRef } from 'react';
 import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import styles from './pomodoroForm.module.css';
+
 import { Cycles } from '../Cycles';
 import { DefaultInput } from '../DefaultInput';
 import { DefaultButton } from '../DefaultButton';
-import { getNextCycle } from '@/utils/getNextCycle';
-import { useTaskContext } from '@/contexts/TaskContext/useTaskContext';
+import { CycleFeedback } from '../CyclesFeedback';
+
 import type { TaskModel } from '@/models/TaskModel';
+
+import { getNextCycle } from '@/utils/getNextCycle';
 import { getNextCycleType } from '@/utils/getNextCycleType';
-import { formatSecondsToMin } from '@/utils/formatSecondsToMin';
+
 import { TaskActionTypes } from '@/contexts/TaskContext/taskActions';
+import { useTaskContext } from '@/contexts/TaskContext/useTaskContext';
 
 export function PomodoroForm() {
   const { state, dispatch } = useTaskContext();
@@ -38,7 +42,8 @@ export function PomodoroForm() {
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   }
 
-  console.log(state);
+  console.log('Estado:', state);
+  console.log('NextCycle:', nextCycleType);
 
   function handleInterruptTask() {
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
@@ -56,9 +61,7 @@ export function PomodoroForm() {
         />
       </div>
       <div className={styles.formRow}>
-        <p>
-          Nesse ciclo <span>foque</span> por <span>25 min</span>
-        </p>
+        <CycleFeedback nextCycleType={nextCycleType} />
       </div>
 
       {state.currentCycle > 0 && (
