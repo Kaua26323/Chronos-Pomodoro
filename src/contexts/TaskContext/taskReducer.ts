@@ -17,11 +17,12 @@ export function taskReducer(
         ...state,
         activeTask: newTask,
         currentCycle: nextCycle,
-        secondsRemaining,
+        secondsRemaining: secondsRemaining,
         formattedSecondsRemaining: formatSecondsToMin(secondsRemaining),
         tasks: [...state.tasks, newTask],
       };
     }
+
     case TaskActionTypes.INTERRUPT_TASK: {
       return {
         ...state,
@@ -34,6 +35,30 @@ export function taskReducer(
           }
           return task;
         }),
+      };
+    }
+
+    case TaskActionTypes.COMPLETE_TASK: {
+      return {
+        ...state,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
+        tasks: state.tasks.map(task => {
+          if (state.activeTask && state.activeTask.id === task.id) {
+            return { ...task, completeDate: Date.now() };
+          }
+          return task;
+        }),
+      };
+    }
+
+    case TaskActionTypes.COUNT_DOWN: {
+      const secondsRemaining = action.payload.secondsRemaining;
+      return {
+        ...state,
+        secondsRemaining: secondsRemaining,
+        formattedSecondsRemaining: formatSecondsToMin(secondsRemaining),
       };
     }
   }

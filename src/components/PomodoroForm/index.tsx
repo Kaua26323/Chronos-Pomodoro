@@ -42,9 +42,6 @@ export function PomodoroForm() {
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   }
 
-  console.log('Estado:', state);
-  console.log('NextCycle:', nextCycleType);
-
   function handleInterruptTask() {
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
   }
